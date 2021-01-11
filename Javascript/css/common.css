@@ -1,0 +1,28 @@
+body {
+    font-family: sans-serif;
+}
+
+.center {
+    width: 50%;
+    margin: auto;
+}
+
+.centerText {
+    text-align: center;
+}
+
+ul li {
+    list-style-type: none;
+}
+
+ul li a {
+    text-decoration: none;
+}
+
+.bordered {
+    border: 1px solid black;
+}
+
+.strikeoutText {
+    text-decoration: line-through;
+}

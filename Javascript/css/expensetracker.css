@@ -1,0 +1,107 @@
+#titleSection {
+    background-color: #38205b;
+    border-radius: 15px 15px 0 0;
+    height: 75px;
+    line-height: 75px;
+    color: white;
+}
+
+#inputForm {
+    margin-top: 25px;
+    min-height: 250px;
+}
+
+.inputLabel {
+    width: 15%;
+}
+
+.row div {
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.inputText {
+    width: 80%;
+}
+
+.inputCtl {
+    height: 40px;
+    width: 100%;
+}
+
+#addBtnDiv {
+    width: 100%;
+    margin-top: 10px;
+}
+
+#addBtn {
+    background-color: #195bb7;
+    color: white;
+    font-weight: bold;
+    float: left;
+    width: 140px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    border-radius: 3px;
+    text-transform: uppercase;
+}
+
+#addBtn:hover {
+    cursor: pointer;
+}
+
+#hrDiv {
+    height: 25px;
+}
+
+#expenseTable {
+    width: 100%;
+}
+
+#expenseTable tr th:not(last-child) {
+    font-weight: bold;
+    color: white;
+    width: 30%;
+    height: 30px;
+    line-height: 30px;
+}
+
+#expenseTable tr th:last-child {
+    font-weight: bold;
+    color: white;
+    width: 10%;
+    height: 30px;
+    line-height: 30px;
+}
+
+#expenseTable tr td:last-child img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    cursor: pointer;
+}
+
+#expenseTHDate {
+    background-color: #9bb902;
+} 
+    
+#expenseTHDesc {
+    background-color: #195bb7;
+}
+
+#expenseTHAmount {
+    background-color: #cb174e;
+}
+
+#expenseTHRemove {
+    background-color: #390fa4;
+}
+
+#expenseTable tr:nth-child(even) {
+    background: #ccc;
+}
+
+#expenseTable tr:nth-child(odd) {
+    background: #fff;
+}

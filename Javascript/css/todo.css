@@ -1,0 +1,95 @@
+body {
+    background-image: linear-gradient(to right, #48a7de, #2a66c6);
+    font-family: sans-serif;
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    width: 50%;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    background: #333;
+    background-image: linear-gradient(to right, #ccc, #333, #ccc);
+}
+
+#inputForm {
+    width: 50%;
+    height: 50px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    background: white;
+    box-shadow: rgba(0, 0, 0, 0.15) 5px 5px 5px;
+    border-radius: 5px 5px 5px 5px;
+}
+
+#todolist {
+    width: 25%;
+    min-height: 300px;
+    background-color: white;
+    border: none;
+    border-radius: 5px 5px 5px 5px;
+    box-shadow: rgba(0, 0, 0, 0.15) 5px 5px 5px;
+    padding-top: 25px;
+    padding-bottom: 50px;
+}
+
+#todoInput {
+    width: 75%;
+    height: 40px;
+    border: none;
+}
+
+#todoSubmitBtn {
+    width: 20%;
+    height: 40px;
+    line-height: 40px;
+    background-color: #2a66c6;
+    border-radius: 5px 5px 5px 5px;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+}
+
+.addBtnText {
+    vertical-align: middle;
+}
+
+.todo {
+    width: 95%;
+    margin: auto;
+    border-bottom: 1px solid black;
+    margin-top: 15px;
+}
+
+.todoText {
+    width: 80%;
+    height: 40px;
+    line-height: 40px;
+    display: inline-block;
+}
+
+.todoBtn {
+    width: 7%;
+    display: inline-block;
+}
+
+.todoBtn > img {
+    vertical-align: middle;
+}
+
+.todoCheckbox {
+    width: 5%;
+    display: inline-block;
+}
+
+.todoCheckbox > input {
+    vertical-align: middle;
+}
+
+#todoSubmitBtn:hover,
+.todoBtn:hover,
+.todoCheckbox:hover{
+    cursor: pointer;
+}
