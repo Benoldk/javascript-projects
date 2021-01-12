@@ -16,19 +16,23 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
     addTodoToList = function () {
         var inputEl = document.getElementById("todoInput");
-        if (mode == ADDMODE) {
-            var val = inputEl.value;
-            var element = document.getElementById("todolist");
-            var id = todoList.length;
-            todoList.push(val);
-            helperAddTodoItem(element, id, val);
+        if (inputEl.value.trim().length > 0) {
+            if (mode == ADDMODE) {
+                var element = document.getElementById("todolist");
+                var id = todoList.length;
+                todoList.push(inputEl.value);
+                helperAddTodoItem(element, id, inputEl.value);
+            }
+            else if (mode == EDITMODE) {
+                editItem();
+                changeToAddMode();
+            }
+            inputEl.value = "";
+            inputEl.focus();
         }
-        else if (mode == EDITMODE) {
-            editItem();
-            changeToAddMode();
+        else {
+            alert("Cannot add to list. Please fill in a TODO value.")
         }
-        inputEl.value = "";
-        inputEl.focus();
     }
 
     helperAddTodoItem = function (todoListElement, id, value) {
