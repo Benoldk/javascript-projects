@@ -1,12 +1,34 @@
 document.addEventListener("DOMContentLoaded", function (event) {
     var todoList = [];
 
+    const EDITMODE = "EDIT";
+    const ADDMODE = "ADD";
+    var mode = ADDMODE;
+    var curEditingElmentId;
+
+    document.getElementById("todoInput").addEventListener("keypress", function (e) {
+        if (e.key === "Enter"
+            && document.getElementById("todoInput") === document.activeElement)
+        {
+            addTodoToList();
+        }
+    })
+
     addTodoToList = function () {
-        var val = document.getElementById("todoInput").value;
-        var element = document.getElementById("todolist");
-        var id = todoList.length;
-        todoList.push(val);
-        helperAddTodoItem(element, id, val);
+        var inputEl = document.getElementById("todoInput");
+        if (mode == ADDMODE) {
+            var val = inputEl.value;
+            var element = document.getElementById("todolist");
+            var id = todoList.length;
+            todoList.push(val);
+            helperAddTodoItem(element, id, val);
+        }
+        else if (mode == EDITMODE) {
+            editItem();
+            changeToAddMode();
+        }
+        inputEl.value = "";
+        inputEl.focus();
     }
 
     helperAddTodoItem = function (todoListElement, id, value) {
@@ -28,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
         var todoTextDiv = document.createElement("div");
         todoTextDiv.setAttribute("class", "todoText");
         var todoTextSpan = document.createElement("span");
-        todoTextSpan.setAttribute("id", "todoSpanText");
+        todoTextSpan.setAttribute("id", "todoSpanText"+id);
         todoTextSpan.appendChild(document.createTextNode(value));
         todoTextDiv.appendChild(todoTextSpan);
 
@@ -58,7 +80,29 @@ document.addEventListener("DOMContentLoaded", function (event) {
     }
 
     editTodo = function () {
+        var ogParentId = document.getElementById(this.id).parentElement.id;
+        curEditingElmentId = "todoSpanText" + ogParentId;
+        var inputEl = document.getElementById("todoInput");
+        document.getElementById("todoInput").value = document.getElementById(curEditingElmentId).innerHTML;
+        changeToEditMode();
+        inputEl.focus();
+    }
 
+    editItem = function () {
+        if (curEditingElmentId !== null) {
+            document.getElementById(curEditingElmentId).innerHTML = document.getElementById("todoInput").value;
+            curEditingElmentId = null;
+        }
+    }
+
+    changeToEditMode = function () {
+        mode = EDITMODE;
+        document.getElementById("addBtnText").innerHTML = "edit";
+    }
+
+    changeToAddMode = function () {
+        mode = ADDMODE;
+        document.getElementById("addBtnText").innerHTML = "add";
     }
 
     removeTodo = function () {

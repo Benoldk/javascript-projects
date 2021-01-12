@@ -27,12 +27,20 @@ hr {
 #todolist {
     width: 25%;
     min-height: 300px;
-    background-color: white;
+    background: white;
     border: none;
     border-radius: 5px 5px 5px 5px;
     box-shadow: rgba(0, 0, 0, 0.15) 5px 5px 5px;
     padding-top: 25px;
     padding-bottom: 50px;
+}
+
+#todolist .todo:nth-child(even) {
+    background: #ccc;
+}
+
+#todolist .todo:nth-child(odd) {
+    background: #fff;
 }
 
 #todoInput {
@@ -45,15 +53,16 @@ hr {
     width: 20%;
     height: 40px;
     line-height: 40px;
-    background-color: #2a66c6;
+    background: #2a66c6;
     border-radius: 5px 5px 5px 5px;
     color: white;
     text-align: center;
     font-weight: bold;
 }
 
-.addBtnText {
+#addBtnText {
     vertical-align: middle;
+    text-transform: uppercase;
 }
 
 .todo {
