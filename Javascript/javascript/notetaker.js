@@ -5,6 +5,16 @@ document.addEventListener("DOMContentLoaded", function () {
     var curMode = null;
     var curNoteId = null;
 
+    setAddMode = function () {
+        curMode = ADDMODE;
+        document.getElementById("submitBtn").innerHTML = "Submit";
+    }
+
+    setEditMode = function () {
+        curMode = EDITMODE;
+        document.getElementById("submitBtn").innerHTML = "Edit";
+    }
+
     initialize = function () {
         setAddMode();
         document.getElementById("noteInput").focus();
@@ -88,15 +98,5 @@ document.addEventListener("DOMContentLoaded", function () {
         if (curNoteId !== null) {
             // TODO: add logic to edit target note
         }
-    }
-
-    setAddMode() = function () {
-        curMode = ADDMODE;
-        document.getElementById("submitBtn").innerHTML = "Submit";
-    }
-
-    setEditMode() = function () {
-        curMode = EDITMODE;
-        document.getElementById("submitBtn").innerHTML = "Edit";
     }
 });
