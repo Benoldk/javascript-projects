@@ -1,0 +1,62 @@
+#titleDiv {
+    background: #ea96bd;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: bold;
+    border-radius: 10px 10px 10px 10px;
+    box-shadow: rgba(0, 0, 0, 0.15) 7px 7px 5px;
+    height: 100px;
+    line-height: 100px;
+}
+
+#noteDiv {
+    margin-top: 25px;
+    margin-bottom: 25px;
+    height: 200px;
+}
+
+#submitBtn {
+    margin-top: 10px;
+    height: 50px;
+    line-height: 50px;
+    width: 100px;
+    background: #296cd7;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: bold;
+    float: right;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+}
+
+#notelist {
+    margin-top: 25px;
+}
+
+#notelist > div {
+    display: inline-block;
+    width: 49%;
+    height: 150px;
+    border: 2px solid rgba(0, 0, 0, .1);
+    border-radius: 10px 10px 10px 10px;
+    box-shadow: rgba(0, 0, 0, 0.15) 7px 7px 5px;
+}
+
+.note {
+    height: 75%;
+    padding-top: 5px;
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
+.notebtns {
+    height: 25%;
+}
+
+.notebtns div {
+    display: inline-block;
+    float: right;
+    margin-right: 10px;
+    cursor: pointer;
+}
