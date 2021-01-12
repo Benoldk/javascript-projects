@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    var notesList = [];
+    var noteList = [];
     const ADDMODE = "ADD";
     const EDITMODE = "EDIT";
     var curMode = null;
@@ -74,8 +74,9 @@ document.addEventListener("DOMContentLoaded", function () {
         noteBtnsDiv.appendChild(removeBtn);
         noteBtnsDiv.appendChild(detailsBtn);
 
-        var mainNoteDiv = docuemnt.createElement("div");
+        var mainNoteDiv = document.createElement("div");
         mainNoteDiv.setAttribute("id", id);
+        mainNoteDiv.setAttribute("class", "noteDiv");
         mainNoteDiv.appendChild(noteDiv);
         mainNoteDiv.appendChild(noteBtnsDiv);
 

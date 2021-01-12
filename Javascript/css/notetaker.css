@@ -50,6 +50,10 @@
     padding-left: 5px;
 }
 
+#notelist > .noteDiv:nth-child(n+3) {
+    margin-top: 20px;
+}
+
 .notebtns {
     height: 25%;
 }
