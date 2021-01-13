@@ -1,0 +1,30 @@
+<!DOCUTYPE html>
+<html>
+    <head>
+        <title>Note Taker</title>
+        <script type="text/javascript" src="../javascript/notetaker.js"></script>
+        <link rel="stylesheet" href="../css/common.css" />
+        <link rel="stylesheet" href="../css/notetaker.css" />
+    </head>
+    <body>
+        <div id="titleDiv" class="center centerText">
+            <h1>Note Taker</h1>
+        </div>
+        <div id="noteDiv" class="center">
+            <textarea id="noteInput" rows="10" cols="132"></textarea>
+            <div id="submitBtn">Submit</div>
+        </div>
+        <div class="center">
+            <hr />
+        </div>
+        <div id="notelist" class="center"></div>
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <div class="close-div">
+                    <span id="closeModal">&times;</span>
+                </div>
+                <p id="modalText"></p>
+            </div>
+        </div>
+    </body>
+</html>

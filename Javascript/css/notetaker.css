@@ -1,0 +1,114 @@
+#titleDiv {
+    background: #ea96bd;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: bold;
+    border-radius: 10px 10px 10px 10px;
+    box-shadow: rgba(0, 0, 0, 0.15) 7px 7px 5px;
+    height: 100px;
+    line-height: 100px;
+}
+
+#noteDiv {
+    margin-top: 25px;
+    margin-bottom: 25px;
+    height: 200px;
+}
+
+#submitBtn {
+    margin-top: 10px;
+    height: 50px;
+    line-height: 50px;
+    width: 100px;
+    background: #296cd7;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: bold;
+    float: right;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+}
+
+#notelist {
+    margin-top: 25px;
+}
+
+#notelist > div {
+    display: inline-block;
+    align-items: center;
+    margin-right: 10px;
+    width: 31%;
+    height: 300px;
+    border: 1px solid black;
+    box-shadow: rgba(0, 0, 0, 0.15) 7px 7px 5px;
+    background: #e29721;
+}
+
+.note {
+    height: 85%;
+    padding-top: 5px;
+    padding-right: 5px;
+    padding-left: 5px;
+    background: linear-gradient(to right, #e29721, black, black);
+    background-size: 100% 1px;
+    background-position: bottom 0 left 0,bottom 5px left 0;
+    background-repeat: no-repeat;
+}
+
+#notelist > .noteDiv:nth-child(n+3) {
+    margin-top: 20px;
+}
+
+.notebtns {
+    height: 12%;
+    margin-top: 5px;
+}
+
+.notebtns div {
+    display: inline-block;
+    float: right;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.modal-content {
+    background: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+.close-div {
+    width: 100%;
+    height: 25px;
+}
+
+#closeModal {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+#closeModal:hover,
+#closeModal:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
