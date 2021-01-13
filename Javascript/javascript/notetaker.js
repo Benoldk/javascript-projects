@@ -4,43 +4,49 @@ document.addEventListener("DOMContentLoaded", function () {
     const EDITMODE = "EDIT";
     var curMode = null;
     var curNoteId = null;
+    var curNoteParentId = null;
+
+    const modal = document.querySelector("#modal");
+    const submitBtn = document.querySelector("#submitBtn");
+    const noteInput = document.querySelector("#noteInput");
 
     setAddMode = function () {
         curMode = ADDMODE;
-        document.getElementById("submitBtn").innerHTML = "Submit";
+        submitBtn.innerText = "Submit";
     }
 
     setEditMode = function () {
         curMode = EDITMODE;
-        document.getElementById("submitBtn").innerHTML = "Edit";
+        submitBtn.innerText = "Edit";
     }
 
     initialize = function () {
+        modal.style.display = "none";
         setAddMode();
-        document.getElementById("noteInput").focus();
+        noteInput.innerText = "WRITE NOTE HERE";
+        noteInput.focus();
     }
 
     initialize();
 
-    document.getElementById("submitBtn").onclick = function () {
+    submitBtn.onclick = function () {
         addNote();
     }
 
     addNote = function () {
-        var noteInput = document.getElementById("noteInput");
-        var note = noteInput.innerHTML;
+        var note = noteInput.value;
         if (note.trim().length > 0) {
-            var noteElVal = note.substring(0, 100) + "...";
+            var noteElVal = note.substring(0, 465) + "...";
             if (curMode == ADDMODE) {
                 var noteEl = createNoteElement(noteElVal);
-                document.getElementById("notelist").appendChild(noteEl);
+                document.querySelector("#notelist").append(noteEl);
                 noteList.push(note);
             }
             else if (curMode == EDITMODE) {
                 editTargetNote();
                 setAddMode();
             }
-            noteInput.innerHTML = "";
+            noteInput.value = "";
         }
         else {
             alert("Cannot add an empty note. Please write a note first!")
@@ -51,39 +57,39 @@ document.addEventListener("DOMContentLoaded", function () {
     createNoteElement = function (noteVal) {
         var id = noteList.length;
 
-        var noteDiv = document.createElement("div");
-        noteDiv.setAttribute("class", "note");
-        noteDiv.setAttribute("id", "note" + id);
-        noteDiv.innerHTML = noteVal;
+        var removeBtn = createButtonElement("removeBtn", "remove note", "../images/delete-icon-small.png");
+        removeBtn.dataset.noteParentId = id;
+        removeBtn.onclick = removeNote;
 
-        var noteBtnsDiv = document.createElement("div");
-        noteBtnsDiv.setAttribute("class", "noteBtns");
+        var editBtn = createButtonElement("editBtn", "edit note", "../images/edit-icon-small.png");
+        editBtn.dataset.noteParentId = id;
+        editBtn.dataset.noteId = "note"+id;
+        editBtn.onclick = editNote;
 
-        var removeBtn = document.createElement("div");
-        removeBtn.setAttribute("class", "remove");
+        var viewBtn = createButtonElement("viewBtn", "view note details", "../images/popup-icon-small.png");
+        viewBtn.dataset.noteParentId = id;
+        viewBtn.onclick = viewNote;
 
-        var removeImg = createImage("remove note", "remove note", "../images/delete-icon-small.png");
-        removeBtn.appendChild(removeImg);
+        var noteBtnsDiv = createDivElement("noteBtns", "");
+        noteBtnsDiv.append(removeBtn, editBtn, viewBtn);
 
-        var detailsBtn = document.createElement("div");
-        detailsBtn.setAttribute("class", "viewBtn");
+        var noteDiv = createDivElement("note", "note" + id);
+        noteDiv.innerText = noteVal;
 
-        var detailsImg = createImage("view details", "view details", "../images/popup-icon-small.png");
-        detailsBtn.appendChild(detailsImg);
-
-        noteBtnsDiv.appendChild(removeBtn);
-        noteBtnsDiv.appendChild(detailsBtn);
-
-        var mainNoteDiv = document.createElement("div");
-        mainNoteDiv.setAttribute("id", id);
-        mainNoteDiv.setAttribute("class", "noteDiv");
-        mainNoteDiv.appendChild(noteDiv);
-        mainNoteDiv.appendChild(noteBtnsDiv);
+        var mainNoteDiv = createDivElement("noteDiv",  id);
+        mainNoteDiv.append(noteDiv, noteBtnsDiv);
 
         return mainNoteDiv;
     }
 
-    createImage = function (alt, title, src) {
+    createDivElement = function (divClass, divId) {
+        var div = document.createElement("div");
+        div.setAttribute("class", divClass);
+        div.id = divId;
+        return div;
+    }
+
+    createImageElement = function (alt, title, src) {
         var img = document.createElement("img");
         img.setAttribute("alt", alt);
         img.setAttribute("title", title);
@@ -91,13 +97,58 @@ document.addEventListener("DOMContentLoaded", function () {
         return img;
     }
 
+    createButtonElement = function (btnClass, imgAltTitle, imgPath) {
+        var btn = document.createElement("div");
+        btn.setAttribute("class", btnClass);
+        var img = createImageElement(imgAltTitle, imgAltTitle, imgPath);
+        btn.append(img);
+
+        return btn
+    }
+
+    viewNote = function () {
+        displayNoteModal(noteList[this.dataset.noteParentId])
+    }
+
+    displayNoteModal = function (note) {
+        modal.querySelector("#modalText").innerText = note;
+        modal.style.display = "block";
+    }
+
+    document.querySelector("#closeModal").onclick = function () {
+        modal.style.display = "none";
+    }
+
+    window.onclick = function (e) {
+        if (e.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+
+    removeNote = function () {
+        document.getElementById(this.dataset.noteParentId).remove();
+        var remainingNoteDivs = document.querySelector(".noteDiv");
+        if (remainingNoteDivs != null) {
+            for (var i = 0; i < remainingNoteDivs.length; i++) {
+                noteDiv.id = i;
+            }
+        }
+        noteList.splice(this.dataset.noteParentId, 1);
+    }
+
     editNote = function () {
         setEditMode();
+        noteInput.value = noteList[this.dataset.noteParentId];
+        curNoteParentId = this.dataset.noteParentId;
+        curNoteId = this.dataset.noteId;
+        noteInput.focus();
     }
 
     editTargetNote = function () {
-        if (curNoteId !== null) {
-            // TODO: add logic to edit target note
+        if (curNoteId !== null && curNoteParentId !== null) {
+            noteList[curNoteParentId] = noteInput.value;
+            document.querySelector("#"+curNoteId).innerText = noteInput.value.substring(0, 465) + "...";
+            curNoteId = null;
         }
     }
 });
