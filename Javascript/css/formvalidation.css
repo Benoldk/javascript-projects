@@ -1,0 +1,51 @@
+#validation-form div.input-parent-div {
+    display: block;
+    width: 50%;
+    margin: auto;
+    height: 50px;
+    line-height: 50px;
+}
+
+.input-parent-div div {
+    display: inline-block;
+}
+
+.input-parent-div .label-div {
+    width: 20%;
+    height: 50px;
+    line-height: 50px;
+}
+
+.input-parent-div .input-div {
+    width: 79%;
+    height: 40px;
+}
+
+.input-div input {
+    width: 100%;
+    height: 40px;
+}
+
+.input-parent-div input[type=submit] {
+    background: #0094ff;
+    width: 120px;
+    height: 60px;
+    line-height: 60px;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 16px;
+    color: white;
+    border: none;
+    border-radius: 5px 5px 5px 5px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+#email-error,
+#username-error,
+#password-error {
+    display: none;
+    height: 70px;
+    line-height: 40px;
+    color: #f00;
+}
