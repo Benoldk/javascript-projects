@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Form Validation</title>
+        <script type="text/javascript" src="../javascript/formvalidation.js"></script>
+        <link rel="stylesheet" href="../css/common.css" />
+        <link rel="stylesheet" href="../css/formvalidation.css" />
+    </head>
+    <body>
+        <div class="center centerText">
+            <h1>Form Validation</h1>
+        </div>
+        <div class="center">
+            <form id="validation-form">
+                <div class="input-parent-div">
+                    <div class="label-div">
+                        <label for="emailInput">Email:</label>
+                    </div>
+                    <div class="input-div">
+                        <input type="email" name="emailInput" id="email-input" />
+                    </div>
+                </div>
+                <div id="email-error" class="center">
+                    <span id="email-error-text"></span>
+                </div>
+                <div class="input-parent-div">
+                    <div class="label-div">
+                        <label for="usernameInput">Username:</label>
+                    </div>
+                    <div class="input-div">
+                        <input type="text" name="usernameInput" id="username-input" />
+                    </div>
+                </div>
+                <div id="username-error" class="center">
+                    <span id="username-error-text"></span>
+                </div>
+                <div class="input-parent-div">
+                    <div class="label-div">
+                        <label for="passwordInput">Password:</label>
+                    </div>
+                    <div class="input-div">
+                        <input type="password" name="passwordInput" id="password-input" />
+                    </div>
+                </div>
+                <div id="password-error" class="center">
+                    <span id="password-error-text"></span>
+                </div>
+                <div class="input-parent-div">
+                    <div class="label-div">
+                        <label for="phoneInput">Phone:</label>
+                    </div>
+                    <div class="input-div">
+                        <input type="text" name="phoneInput" id="phone-input" />
+                    </div>
+                </div>
+                <div class="input-parent-div">
+                    <input type="submit" value="Submit" />
+                </div>
+            </form>
+        </div>
+    </body>
+</html>
