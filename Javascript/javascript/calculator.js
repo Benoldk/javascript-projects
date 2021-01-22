@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    handleNumberButtonClick = function (e) {
+    handleNumberButtonClick = function (event) {
         var event = event || window.event;
         var eventTarget = event.target || event.srcElement;
         if (eventTarget.className.match("calc-num")) {
@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    handleOperationButtonClick = function (e) {
+    handleOperationButtonClick = function (event) {
         var event = event || window.event;
         var eventTarget = event.target || event.srcElement;
         if (eventTarget.className.match("calc-op")) {
@@ -77,6 +77,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
         var equationBreakdown = breakdownEquation(equation);
         var equation = evaluateOperation(equationBreakdown, "/");
+        if (equation === "DivideByZeroError") {
+            document.querySelector("#operation-input").value = "DivideByZeroError";
+            return;
+        }
 
         var equationBreakdown = breakdownEquation(equation);
         var equation = evaluateOperation(equationBreakdown, "+");
@@ -107,6 +111,10 @@ document.addEventListener("DOMContentLoaded", function () {
         var i = equationBreakdown.length - 1;
         while (i > -1) {
             if (equationBreakdown[i] === operation) {
+                if (operation === "/" && equationBreakdown[i + 1] === "0") {
+                    equationBreakdown = "DivideByZeroError";
+                    break;
+                }
                 var result = getOperationResult(Number(equationBreakdown[i - 1]), Number(equationBreakdown[i + 1]), operation);
                 equationBreakdown[i - 1] = result;
                 equationBreakdown.splice(i, 2);
@@ -114,7 +122,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
             i--;
         }
-        return equationBreakdown.join('');
+        return Array.isArray(equationBreakdown) ? equationBreakdown.join('') : equationBreakdown;
     }
 
     getOperationResult = function (leftNum, rightNum, operation) {
