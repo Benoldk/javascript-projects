@@ -73,50 +73,48 @@ document.addEventListener("DOMContentLoaded", function () {
         var equation = document.querySelector("#operation-input").value;
 
         var equationBreakdown = breakdownEquation(equation);
-        var equation = evaluateOperation(equationBreakdown[1], equationBreakdown[0].get("*"), "*");
+        var equation = evaluateOperation(equationBreakdown, "*");
 
         var equationBreakdown = breakdownEquation(equation);
-        var equation = evaluateOperation(equationBreakdown[1], equationBreakdown[0].get("/"), "/");
+        var equation = evaluateOperation(equationBreakdown, "/");
 
         var equationBreakdown = breakdownEquation(equation);
-        var equation = evaluateOperation(equationBreakdown[1], equationBreakdown[0].get("+"), "+");
+        var equation = evaluateOperation(equationBreakdown, "+");
 
         var equationBreakdown = breakdownEquation(equation);
-        var equation = evaluateOperation(equationBreakdown[1], equationBreakdown[0].get("-"), "-");
+        var equation = evaluateOperation(equationBreakdown, "-");
 
         document.querySelector("#operation-input").value = equation;
     }
 
     breakdownEquation = function (equation) {
-        var breakdown = [new Map(), []]
-        breakdown[0].set("*", [])
-        breakdown[0].set("/", [])
-        breakdown[0].set("+", [])
-        breakdown[0].set("-", [])
+        var breakdown = [];
         var opSigns = ["*", "/", "+", "-"];
         var prevTracker = 0;
-        var opSignIndex = 1;
         for (var i = 0; i < equation.length; i++) {
             var index = opSigns.indexOf(equation[i]);
             if (index >= 0) {
-                breakdown[0].get(opSigns[index]).push(opSignIndex);
-                breakdown[1].push(equation.substring(prevTracker, i));
-                breakdown[1].push(opSigns[index]);
+                breakdown.push(equation.substring(prevTracker, i));
+                breakdown.push(opSigns[index]);
                 prevTracker = i+1;
-                ++opSignIndex;
             }
         }
-        breakdown[1].push(equation.substring(prevTracker, equation.length));
+        breakdown.push(equation.substring(prevTracker, equation.length));
         return breakdown;
     }
 
-    evaluateOperation = function (equationArr, operationIndices, operation) {
-        for (var i = operationIndices.length - 1; i >= 0; i--) {
-            var result = getOperationResult(Number(equationArr[operationIndices[i] - 1]), Number(equationArr[operationIndices[i] + 1]), operation);
-            equationArr[operationIndices[i] - 1] = result;
-            equationArr.splice(operationIndices[i], 2);
+    evaluateOperation = function (equationBreakdown, operation) {
+        var i = equationBreakdown.length - 1;
+        while (i > -1) {
+            if (equationBreakdown[i] === operation) {
+                var result = getOperationResult(Number(equationBreakdown[i - 1]), Number(equationBreakdown[i + 1]), operation);
+                equationBreakdown[i - 1] = result;
+                equationBreakdown.splice(i, 2);
+                i--;
+            }
+            i--;
         }
-        return equationArr.join('');
+        return equationBreakdown.join('');
     }
 
     getOperationResult = function (leftNum, rightNum, operation) {
